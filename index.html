@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Gamini Jindal — Full-Stack Lead Developer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root{
+    --paper:#F7F6F1; --surface:#FFFFFF; --ink:#1A1A16; --muted:#6B6A60;
+    --faint:#9B988C; --accent:#15684E; --accent-ink:#0E4F3B; --accent-soft:#15684E12;
+    --line:#E5E2D8; --line-soft:#EDEBE2;
+    --sans:'Inter',system-ui,sans-serif; --serif:'Fraunces',Georgia,serif; --mono:'JetBrains Mono',monospace;
+    box-sizing:border-box;
+  }
+  *,*::before,*::after{box-sizing:inherit;margin:0;padding:0;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{
+    font-family:var(--sans); background:var(--paper); color:var(--ink);
+    line-height:1.6; font-size:16px; -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--accent);color:#fff;}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;background:rgba(247,246,241,.82);
+    backdrop-filter:saturate(1.3) blur(10px);border-bottom:1px solid transparent;
+    transition:border-color .3s;
+  }
+  header.nav.scrolled{border-color:var(--line);}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:66px;}
+  .brand{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:-.01em;}
+  .brand span{color:var(--accent);}
+  .nav-links{display:flex;gap:30px;align-items:center;}
+  .nav-links a{font-size:14px;color:var(--muted);font-weight:450;transition:color .2s;position:relative;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a.cta{
+    color:var(--accent);font-weight:500;border:1px solid var(--accent);
+    padding:7px 15px;border-radius:999px;transition:all .2s;
+  }
+  .nav-links a.cta:hover{background:var(--accent);color:#fff;}
+  .burger{display:none;background:none;border:0;cursor:pointer;flex-direction:column;gap:5px;padding:6px;}
+  .burger span{width:22px;height:2px;background:var(--ink);transition:.25s;}
+
+  /* ---------- section scaffolding ---------- */
+  section{padding:84px 0;border-top:1px solid var(--line-soft);scroll-margin-top:72px;}
+  section:first-of-type{border-top:0;}
+  .eyebrow{
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--accent);
+    text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:26px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--accent);opacity:.5;}
+  h2.sec{font-family:var(--serif);font-weight:500;font-size:clamp(28px,4vw,40px);letter-spacing:-.02em;line-height:1.1;}
+
+  /* ---------- hero ---------- */
+  .hero{padding:clamp(70px,13vh,130px) 0 92px;}
+  .hero .tagline{
+    font-family:var(--mono);font-size:13px;letter-spacing:.03em;color:var(--muted);
+    text-transform:uppercase;margin-bottom:26px;
+  }
+  .hero h1{
+    font-family:var(--serif);font-weight:500;font-size:clamp(46px,9vw,98px);
+    line-height:.98;letter-spacing:-.035em;margin-bottom:28px;
+  }
+  .hero h1 em{font-style:italic;color:var(--accent);font-weight:400;}
+  .hero .lead{font-size:clamp(17px,2.4vw,21px);color:var(--muted);max-width:60ch;line-height:1.55;}
+  .hero .lead strong{color:var(--ink);font-weight:600;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;font-size:14.5px;font-weight:500;
+    padding:13px 24px;border-radius:999px;transition:all .22s;cursor:pointer;
+  }
+  .btn-primary{background:var(--ink);color:var(--paper);}
+  .btn-primary:hover{background:var(--accent);transform:translateY(-2px);}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px);}
+  .btn svg{width:15px;height:15px;}
+
+  .stats{display:flex;flex-wrap:wrap;gap:0;margin-top:62px;border-top:1px solid var(--line);}
+  .stat{flex:1;min-width:160px;padding:22px 26px 0 0;}
+  .stat .n{font-family:var(--serif);font-size:30px;font-weight:500;letter-spacing:-.02em;display:block;}
+  .stat .l{font-size:13px;color:var(--muted);margin-top:4px;}
+
+  /* ---------- experience ---------- */
+  .timeline{position:relative;margin-top:8px;}
+  .job{
+    display:grid;grid-template-columns:200px 1fr;gap:34px;padding:34px 0;
+    border-top:1px solid var(--line-soft);
+  }
+  .job:first-child{border-top:0;}
+  .job .meta .role{font-weight:600;font-size:17px;letter-spacing:-.01em;}
+  .job .meta .co{color:var(--accent);font-size:14.5px;font-weight:500;margin-top:3px;}
+  .job .meta .when{font-family:var(--mono);font-size:12px;color:var(--faint);margin-top:9px;}
+  .job ul{list-style:none;display:flex;flex-direction:column;gap:11px;}
+  .job li{position:relative;padding-left:22px;font-size:15.5px;color:#36352E;line-height:1.55;}
+  .job li::before{content:"";position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;background:var(--accent);opacity:.55;}
+  .job .note{color:var(--muted);font-size:15.5px;}
+
+  /* ---------- projects ---------- */
+  .proj{
+    display:grid;grid-template-columns:54px 1fr;gap:26px;padding:40px 0;
+    border-top:1px solid var(--line-soft);transition:transform .25s;
+  }
+  .proj:first-of-type{border-top:0;}
+  .proj .idx{font-family:var(--mono);font-size:14px;color:var(--faint);padding-top:6px;}
+  .proj h3{font-family:var(--serif);font-weight:500;font-size:26px;letter-spacing:-.02em;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+  .proj h3 .per{font-family:var(--mono);font-size:12px;color:var(--faint);font-weight:400;letter-spacing:0;}
+  .proj p{color:#3A3930;font-size:15.5px;margin-top:12px;max-width:68ch;line-height:1.6;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+  .chip{
+    font-family:var(--mono);font-size:11.5px;color:var(--accent-ink);background:var(--accent-soft);
+    padding:5px 11px;border-radius:6px;border:1px solid #15684E22;
+  }
+
+  /* ---------- skills ---------- */
+  .skillgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 48px;margin-top:10px;}
+  .skillcol h4{font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+  .skillcol ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .skillcol li{font-size:15px;color:#2C2B25;display:flex;align-items:center;gap:10px;}
+  .skillcol li::before{content:"";width:5px;height:5px;background:var(--accent);border-radius:1px;opacity:.6;}
+
+  /* ---------- education ---------- */
+  .edu{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px;}
+  .edu .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;}
+  .edu .deg{font-weight:600;font-size:16.5px;letter-spacing:-.01em;}
+  .edu .inst{color:var(--accent);font-size:14.5px;margin-top:5px;}
+  .edu .yr{font-family:var(--mono);font-size:12px;color:var(--faint);margin-top:10px;}
+
+  /* ---------- contact ---------- */
+  .contact{text-align:left;}
+  .contact h2{font-family:var(--serif);font-weight:500;font-size:clamp(34px,6vw,62px);letter-spacing:-.03em;line-height:1.02;max-width:16ch;}
+  .contact h2 a{color:var(--accent);border-bottom:2px solid transparent;transition:border-color .2s;}
+  .contact h2 a:hover{border-color:var(--accent);}
+  .contact .rows{display:flex;flex-wrap:wrap;gap:34px;margin-top:44px;}
+  .contact .row .k{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);margin-bottom:6px;}
+  .contact .row .v{font-size:16px;font-weight:500;transition:color .2s;}
+  .contact .row a.v:hover{color:var(--accent);}
+
+  footer{border-top:1px solid var(--line-soft);padding:30px 0;color:var(--faint);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  footer .mono{font-family:var(--mono);}
+
+  /* reveal — visible by default; animation only when JS is active */
+  .reveal{opacity:1;transform:none;}
+  html.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;}
+  html.js .reveal.in{opacity:1;transform:none;}
+
+  @media(max-width:760px){
+    .nav-links{
+      position:fixed;inset:66px 0 auto 0;background:var(--paper);border-bottom:1px solid var(--line);
+      flex-direction:column;gap:0;padding:8px 0;transform:translateY(-120%);transition:transform .3s;
+    }
+    .nav-links.open{transform:none;}
+    .nav-links a{padding:14px 28px;width:100%;font-size:16px;}
+    .nav-links a.cta{margin:10px 28px;width:auto;text-align:center;}
+    .burger{display:flex;}
+    .job{grid-template-columns:1fr;gap:16px;}
+    .skillgrid{grid-template-columns:1fr;gap:30px;}
+    .edu{grid-template-columns:1fr;}
+    .proj{grid-template-columns:1fr;gap:10px;}
+    .proj .idx{display:none;}
+    .stat{min-width:45%;}
+  }
+  @media(prefers-reduced-motion:reduce){html.js .reveal{opacity:1;transform:none;transition:none;}html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand">Gamini<span>.</span>Jindal</a>
+    <nav class="nav-links" id="menu">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact" class="cta">Get in touch</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="tagline reveal">Full-Stack Lead Developer · Chandigarh, India</div>
+      <h1 class="reveal">Gamini<br>Jindal<em>.</em></h1>
+      <p class="lead reveal">Experienced full-stack lead developer with <strong>over 6 years</strong> of expertise creating innovative web solutions. I excel at leveraging <strong>cloud technologies</strong> and <strong>microservices architectures</strong> to produce optimal, production-ready systems.</p>
+      <div class="hero-actions reveal">
+        <a class="btn btn-primary" href="mailto:gaminijindal@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          Get in touch
+        </a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/gamini-jindal-324340153" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.82-2.05 3.75-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3s-2.3 1.57-2.3 3.2V21H9z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+
+      <div class="stats reveal">
+        <div class="stat"><span class="n">6+</span><span class="l">Years of experience</span></div>
+        <div class="stat"><span class="n">Technical Lead</span><span class="l">Currently @ Dentsu Global Services</span></div>
+        <div class="stat"><span class="n">Cloud-native</span><span class="l">AWS · Azure · GCP · Microservices</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="eyebrow reveal">01 — Experience</div>
+      <h2 class="sec reveal" style="margin-bottom:36px;">Where I've worked</h2>
+      <div class="timeline">
+
+        <div class="job reveal">
+          <div class="meta">
+            <div class="role">Technical Lead</div>
+            <div class="co">Dentsu Global Services</div>
+            <div class="when">May 2025 — Present</div>
+          </div>
+          <div><p class="note">Leading full-stack development as Technical Lead, joined May 2025.</p></div>
+        </div>
+
+        <div class="job reveal">
+          <div class="meta">
+            <div class="role">Assistant Lead — Developer</div>
+            <div class="co">Cloud Analogy, Bangalore</div>
+            <div class="when">Feb 2022 — May 2025</div>
+          </div>
+          <ul>
+            <li>Developed end-to-end web applications using React.js, Next.js, Node.js and Express.js across both SQL and NoSQL databases.</li>
+            <li>Deployed and managed data on the cloud using AWS, Google Cloud and Azure.</li>
+            <li>Implemented unit tests to ensure code coverage and catch bugs early with Chai, Mocha, Jest, React Testing Library and Playwright.</li>
+            <li>Applied a microservices approach and design patterns to deliver optimal, production-ready solutions for high-level projects.</li>
+          </ul>
+        </div>
+
+        <div class="job reveal">
+          <div class="meta">
+            <div class="role">Full Stack Developer</div>
+            <div class="co">Innow8Apps, Chandigarh</div>
+            <div class="when">Jun 2019 — Jan 2022</div>
+          </div>
+          <ul>
+            <li>Led development of a food delivery application, building client- and server-side APIs with GraphQL and coordinating with the mobile team on new and existing features.</li>
+            <li>Created reusable wrapper functions that reduced logic re-development and sped up feature implementation for the team.</li>
+            <li>Integrated transactional and Square payment gateways and built RESTful APIs for seamless payment processing, following SOLID principles.</li>
+          </ul>
+        </div>
+
+        <div class="job reveal">
+          <div class="meta">
+            <div class="role">System Engineer</div>
+            <div class="co">Infosys, Mysore</div>
+            <div class="when">Jan 2019 — May 2019</div>
+          </div>
+          <ul>
+            <li>Built expertise in Python through structured training and hands-on project development, including data analysis and automation.</li>
+            <li>Developed a restaurant-orders data analysis project using MSSQL, SSIS, SSRS and Microsoft Power BI to extract insights and optimise operations.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="eyebrow reveal">02 — Projects</div>
+      <h2 class="sec reveal" style="margin-bottom:30px;">Selected work</h2>
+
+      <div class="proj reveal">
+        <div class="idx">01</div>
+        <div>
+          <h3>ResellerOS <span class="per">Apr 2024 — Present</span></h3>
+          <p>Implemented Electron.js to launch Chromium and run Playwright scripts using SOLID principles and architecture design, with secure web sockets passing data in encrypted format. Connected to an earlier Salesforce application through Canvas APIs under security constraints, embedding React components in Salesforce to deliver new features. Built licensing for sections such as QuoteAI and DealReg AI, with a microservices approach and GraphQL APIs. Deployed on Azure with a CI/CD pipeline and Docker containerization.</p>
+          <div class="chips"><span class="chip">Electron.js</span><span class="chip">Playwright</span><span class="chip">React</span><span class="chip">Salesforce Canvas</span><span class="chip">GraphQL</span><span class="chip">Microservices</span><span class="chip">Azure</span><span class="chip">Docker</span><span class="chip">CI/CD</span></div>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="idx">02</div>
+        <div>
+          <h3>Invoicing <span class="per">Sep 2024 — Present</span></h3>
+          <p>Used Azure Document Intelligence for invoice reading, streamed data via AWS Kinesis and processed data chunks through AWS SQS to calculate profit margins. Implemented DynamoDB as the database with serverless APIs written in TypeScript, built using a TDD approach.</p>
+          <div class="chips"><span class="chip">TypeScript</span><span class="chip">Azure Document Intelligence</span><span class="chip">AWS Kinesis</span><span class="chip">AWS SQS</span><span class="chip">DynamoDB</span><span class="chip">Serverless</span><span class="chip">TDD</span></div>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="idx">03</div>
+        <div>
+          <h3>Tamm</h3>
+          <p>Worked on the frontend in React, building responsive components and completing the UI for the landing page and other pages.</p>
+          <div class="chips"><span class="chip">React</span><span class="chip">Responsive UI</span><span class="chip">Frontend</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="eyebrow reveal">03 — Skills</div>
+      <h2 class="sec reveal" style="margin-bottom:38px;">Tools &amp; technologies</h2>
+      <div class="skillgrid">
+        <div class="skillcol reveal">
+          <h4>Languages</h4>
+          <ul><li>JavaScript</li><li>TypeScript</li><li>Python</li></ul>
+        </div>
+        <div class="skillcol reveal">
+          <h4>Frontend</h4>
+          <ul><li>React JS</li><li>React Redux</li><li>Next JS</li><li>Electron JS</li><li>HTML5 · CSS3 · SCSS</li><li>MUI · Chakra UI · AntD</li><li>Bootstrap</li></ul>
+        </div>
+        <div class="skillcol reveal">
+          <h4>Backend &amp; APIs</h4>
+          <ul><li>Node JS</li><li>Express JS</li><li>GraphQL</li><li>REST APIs</li><li>Serverless</li></ul>
+        </div>
+        <div class="skillcol reveal">
+          <h4>Cloud &amp; DevOps</h4>
+          <ul><li>AWS</li><li>Azure</li><li>Google Cloud</li><li>Docker</li><li>CI/CD Pipelines</li><li>AWS Kinesis · SQS</li></ul>
+        </div>
+        <div class="skillcol reveal">
+          <h4>Databases</h4>
+          <ul><li>MongoDB</li><li>DynamoDB</li><li>PostgreSQL</li><li>SQL · MSSQL</li></ul>
+        </div>
+        <div class="skillcol reveal">
+          <h4>Testing &amp; Practices</h4>
+          <ul><li>Jest · RTL</li><li>Playwright</li><li>Chai · Mocha</li><li>TDD · Unit Testing</li><li>Microservices · SOLID</li><li>DSA · Git</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="wrap">
+      <div class="eyebrow reveal">04 — Education</div>
+      <h2 class="sec reveal" style="margin-bottom:34px;">Academic background</h2>
+      <div class="edu">
+        <div class="card reveal">
+          <div class="deg">Master of Computer Applications</div>
+          <div class="inst">Panjab University, Chandigarh</div>
+          <div class="yr">Aug 2016 — May 2019</div>
+        </div>
+        <div class="card reveal">
+          <div class="deg">Bachelor of Computer Science</div>
+          <div class="inst">Post Graduate Government College, Chandigarh</div>
+          <div class="yr">Aug 2013 — May 2016</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="eyebrow reveal">05 — Contact</div>
+      <h2 class="reveal">Let's build something <a href="mailto:gaminijindal@gmail.com">together.</a></h2>
+      <div class="rows reveal">
+        <div class="row"><div class="k">Email</div><a class="v" href="mailto:gaminijindal@gmail.com">gaminijindal@gmail.com</a></div>
+        <div class="row"><div class="k">Phone</div><a class="v" href="tel:+919501832377">+91 95018 32377</a></div>
+        <div class="row"><div class="k">LinkedIn</div><a class="v" href="https://linkedin.com/in/gamini-jindal-324340153" target="_blank" rel="noopener">gamini-jindal</a></div>
+        <div class="row"><div class="k">Location</div><div class="v">Chandigarh, India</div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;width:100%;">
+    <span>© <span id="yr"></span> Gamini Jindal</span>
+    <span class="mono">Full-Stack Lead Developer</span>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.add('js');
+  // mobile menu
+  const burger=document.getElementById('burger'), menu=document.getElementById('menu');
+  burger.addEventListener('click',()=>menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+
+  // nav border on scroll
+  const nav=document.getElementById('nav');
+  const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>10);
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+  // scroll reveal
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i,4)*60)+'ms';io.observe(el);});
+
+  document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
