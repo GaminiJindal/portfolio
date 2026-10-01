@@ -97,6 +97,12 @@
   .proj h3{font-family:var(--serif);font-weight:500;font-size:26px;letter-spacing:-.02em;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
   .proj h3 .per{font-family:var(--mono);font-size:12px;color:var(--faint);font-weight:400;letter-spacing:0;}
   .proj p{color:#3A3930;font-size:15.5px;margin-top:12px;max-width:68ch;line-height:1.6;}
+  .livebadge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--emerald);background:#12916a14;border:1px solid #12916a30;padding:3px 9px;border-radius:999px;font-weight:500;transform:translateY(-2px);}
+  .livebadge .d{width:7px;height:7px;border-radius:50%;background:var(--emerald);box-shadow:0 0 0 3px #12916a22;animation:livepulse 1.8s infinite;}
+  @keyframes livepulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+  .proj h3 .cat{font-family:var(--mono);font-size:12px;color:var(--faint);font-weight:400;letter-spacing:0;}
+  .livelink{display:inline-flex;align-items:center;gap:7px;margin-top:15px;font-size:14px;font-weight:600;color:var(--blue);transition:gap .2s,color .2s;}
+  .livelink:hover{gap:12px;color:var(--violet);}
 
   /* chips (projects + experience) */
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
@@ -298,14 +304,45 @@
       <div class="proj reveal">
         <div class="idx">01</div>
         <div>
-          <h3>ResellerOS <span class="per">Apr 2024 — Present</span></h3>
-          <p>Implemented Electron.js to launch Chromium and run Playwright scripts using SOLID principles and architecture design, with secure web sockets passing data in encrypted format. Connected to an earlier Salesforce application through Canvas APIs under security constraints, embedding React components in Salesforce to deliver new features. Built licensing for sections such as QuoteAI and DealReg AI, with a microservices approach and GraphQL APIs. Deployed on Azure with a CI/CD pipeline and Docker containerization.</p>
-          <div class="chips"><span class="chip">Electron.js</span><span class="chip">Playwright</span><span class="chip">React</span><span class="chip">Salesforce Canvas</span><span class="chip">GraphQL</span><span class="chip">Microservices</span><span class="chip">Azure</span><span class="chip">Docker</span><span class="chip">CI/CD</span></div>
+          <h3>Pens.com <span class="cat">E-commerce</span> <span class="livebadge"><span class="d"></span>Live</span></h3>
+          <p>A large-scale e-commerce platform (a National Pen brand) for custom promotional products — browse, personalize, and order pens, drinkware, apparel and more. As a full-stack developer, I worked on the cart and order-management flow, building it with React.js, Node.js and a microservice architecture.</p>
+          <div class="chips"><span class="chip">React.js</span><span class="chip">Node.js</span><span class="chip">Microservices</span><span class="chip">Cart &amp; Order Management</span></div>
+          <a class="livelink" href="https://www.pens.com/" target="_blank" rel="noopener">Visit live site ↗</a>
         </div>
       </div>
 
       <div class="proj reveal">
         <div class="idx">02</div>
+        <div>
+          <h3>Yelsa <span class="cat">Real estate</span> <span class="livebadge"><span class="d"></span>Live</span></h3>
+          <p>A New Zealand real-estate marketplace where owners list properties for free and get matched with active, finance-ready buyers — property listings, buyer profiles, and confidential buyer-matching. As a senior developer, I built the backend in NestJS with MongoDB and the admin panel in Next.js, deployed on AWS.</p>
+          <div class="chips"><span class="chip">NestJS</span><span class="chip">MongoDB</span><span class="chip">Next.js</span><span class="chip">AWS</span><span class="chip">Admin Panel</span></div>
+          <a class="livelink" href="https://yelsa.co.nz/" target="_blank" rel="noopener">Visit live site ↗</a>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="idx">03</div>
+        <div>
+          <h3>Ilmiya <span class="cat">Education</span> <span class="livebadge"><span class="d"></span>Live</span></h3>
+          <p>An AI-first education technology platform that helps institutions design their own schools and manage programs, enrollment, course delivery, and analytics at scale. As a full-stack developer, I worked across the whole stack — React.js, Node.js, PostgreSQL and GraphQL — deployed on AWS.</p>
+          <div class="chips"><span class="chip">React.js</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span><span class="chip">GraphQL</span><span class="chip">AWS</span></div>
+          <a class="livelink" href="https://ilmiya.com/" target="_blank" rel="noopener">Visit live site ↗</a>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="idx">04</div>
+        <div>
+          <h3>ResellerOS <span class="per">Apr 2024 — Present</span> <span class="livebadge"><span class="d"></span>Live</span></h3>
+          <p>As the lead on ResellerOS, I owned both the frontend and backend. Implemented Electron.js to launch Chromium and run Playwright scripts using SOLID principles and architecture design, with secure web sockets passing data in encrypted format. Connected to an earlier Salesforce application through Canvas APIs under security constraints, embedding React components in Salesforce to deliver new features. Built licensing for sections such as QuoteAI and DealReg AI, with a microservices approach and GraphQL APIs. Deployed on Azure with a CI/CD pipeline and Docker containerization.</p>
+          <div class="chips"><span class="chip">Next.js</span><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Express.js</span><span class="chip">MongoDB</span><span class="chip">GraphQL</span><span class="chip">Electron.js</span><span class="chip">Salesforce Canvas</span><span class="chip">OpenAI</span><span class="chip">Microservices</span><span class="chip">Azure</span><span class="chip">Docker</span><span class="chip">CI/CD</span></div>
+          <a class="livelink" href="https://www.reselleros.com/" target="_blank" rel="noopener">Visit live site ↗</a>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="idx">05</div>
         <div>
           <h3>Invoicing <span class="per">Sep 2024 — Present</span></h3>
           <p>Used Azure Document Intelligence for invoice reading, streamed data via AWS Kinesis and processed data chunks through AWS SQS to calculate profit margins. Implemented DynamoDB as the database with serverless APIs written in TypeScript, built using a TDD approach.</p>
@@ -314,7 +351,7 @@
       </div>
 
       <div class="proj reveal">
-        <div class="idx">03</div>
+        <div class="idx">06</div>
         <div>
           <h3>Tamm</h3>
           <p>Worked on the frontend in React, building responsive components and completing the UI for the landing page and other pages.</p>
@@ -364,7 +401,7 @@
         <div class="skillcol reveal" style="--sc:var(--pink);">
           <h4>Testing &amp; Practices</h4>
           <div class="chipwrap">
-            <span class="scchip" style="--i:0">Jest</span><span class="scchip" style="--i:1">RTL</span><span class="scchip" style="--i:2">Playwright</span><span class="scchip" style="--i:3">Chai</span><span class="scchip" style="--i:4">Mocha</span><span class="scchip" style="--i:5">TDD</span><span class="scchip" style="--i:6">Microservices</span><span class="scchip" style="--i:7">SOLID</span><span class="scchip" style="--i:8">DSA</span><span class="scchip" style="--i:9">Git</span>
+            <span class="scchip" style="--i:0">Jest</span><span class="scchip" style="--i:1">RTL</span><span class="scchip" style="--i:2">Playwright</span><span class="scchip" style="--i:3">Chai</span><span class="scchip" style="--i:4">Mocha</span><span class="scchip" style="--i:5">TDD</span><span class="scchip" style="--i:6">System Design</span><span class="scchip" style="--i:7">Microservices</span><span class="scchip" style="--i:8">SOLID</span><span class="scchip" style="--i:9">DSA</span><span class="scchip" style="--i:10">Git</span>
           </div>
         </div>
       </div>
